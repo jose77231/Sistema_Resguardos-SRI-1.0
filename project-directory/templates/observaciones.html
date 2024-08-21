@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Mantenimiento</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-submit {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Solicitud de Mantenimiento o Revisión del Bien</h2>
+            <form id="mantenimiento-form">
+                <div class="form-group">
+                    <label for="imagen">Imagen o Evidencia</label>
+                    <input type="file" class="form-control-file" id="imagen" name="imagen">
+                </div>
+                <div class="form-group">
+                    <label for="status">Estado</label>
+                    <select class="form-control" id="status" name="status" required>
+                        <option value="">Seleccione el estado</option>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="observaciones">Observaciones</label>
+                    <textarea class="form-control" id="observaciones" name="observaciones" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('mantenimiento-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('imagen', document.getElementById('imagen').files[0]);
+            formData.append('status', document.getElementById('status').value);
+            formData.append('observaciones', document.getElementById('observaciones').value);
+
+            fetch('http://192.168.0.241:5000/mantenimiento', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Solicitud enviada correctamente.');
+                // Aquí puedes redirigir a otra página si lo deseas
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un error al enviar la solicitud.');
+            });
+        });
+    </script>
+
+</body>
+</html>

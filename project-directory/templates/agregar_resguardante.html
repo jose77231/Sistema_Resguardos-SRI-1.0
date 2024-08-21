@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear resguardante</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="/project-directory/static/css/styles.css" rel="stylesheet">
+    <!-- Favicons -->
+    <link href="/project-directory/static/img/Logo1.jpeg" rel="icon">
+    <link href="/project-directory/static/img/Logo1.jpeg" rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i"
+        rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/project-directory/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/boxicons/css/boxicons.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/simple-datatables/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card-body"></div>
+        <h2 id="form-title">Crear resguardante</h2>
+
+        <form id="crearUsuarioForm" enctype="multipart/form-data" method="POST" class="mb-3 row">
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="genero">Género</label>
+                    <select class="form-control" id="genero" name="genero" required>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo de usuario</label>
+                    <input type="email" class="form-control" id="correo" name="correo" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Número de teléfono</label>
+                    <input type="text" class="form-control" id="telefono" name="telefono" required>
+                </div>
+                <div class="form-group">
+                    <label for="bienes_asignados">Bienes asignados</label>
+                    <input type="number" class="form-control" id="bienes_asignados" name="bienes_asignados" required>
+                </div>
+                <div class="form-group">
+                    <label for="imagen">Imagen</label>
+                    <input type="file" class="form-control-file" id="imagen" name="imagen" required>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="button" class="btn btn-secondary" onclick="window.history.back()">Atrás</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- JS scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById('crearUsuarioForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const id = new URLSearchParams(window.location.search).get('id');
+            const url = id ? `/usuarios/${id}` : '/usuarios';
+            const method = id ? 'PUT' : 'POST';
+
+            fetch(url, {
+                method: method,
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = 'usuarios.html';  // Redirigir a la lista de usuarios
+                } else {
+                    return response.json().then(data => { throw new Error(data.error || 'Error desconocido'); });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un problema con la solicitud: ' + error.message);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const id = new URLSearchParams(window.location.search).get('id');
+            if (id) {
+                document.getElementById('form-title').innerText = 'Editar resguardante';
+                fetch(`/usuarios/${id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('nombre').value = data.nombre;
+                        document.getElementById('genero').value = data.genero;
+                        document.getElementById('correo').value = data.correo;
+                        document.getElementById('telefono').value = data.telefono;
+                        document.getElementById('bienes_asignados').value = data.bienes_asignados;
+                    });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

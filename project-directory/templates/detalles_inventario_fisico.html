@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Inventario Físico</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="/project-directory/static/css/styles.css" rel="stylesheet">
+    <!-- Favicons -->
+    <link href="/project-directory/static/img/Logo1.jpeg" rel="icon">
+    <link href="/project-directory/static/img/Logo1.jpeg" rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/project-directory/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\boxicons\css\boxicons.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\quill\quill.snow.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\quill\quill.bubble.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\remixicon\remixicon.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\simple-datatables\style.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            background-color: white;
+            margin-bottom: 20px;
+        }
+        .btn-custom {
+            width: 100px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .btn-imprimir {
+            background-color: #6f42c1;
+            color: white;
+        }
+        .btn-editar {
+            background-color: #007bff;
+            color: white;
+        }
+        .details-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .details-container .card {
+            flex: 2;
+            margin-right: 20px;
+        }
+        .details-container .card:last-child {
+            flex: 1;
+            margin-right: 0;
+        }
+        .details-container .card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .qr-code {
+            text-align: center;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Inventario Físico/Descripción</h3>
+        <h4 id="bien-nombre">Nombre del bien</h4>
+
+        <div class="details-container">
+            <div class="card">
+                <h5>Detalles</h5>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th>Nº de inventario:</th>
+                            <td id="numero-inventario"></td>
+                        </tr>
+                        <tr>
+                            <th>Nº de serie:</th>
+                            <td id="numero-serie"></td>
+                        </tr>
+                        <tr>
+                            <th>Estado del bien:</th>
+                            <td id="estado-bien"></td>
+                        </tr>
+                        <tr>
+                            <th>Descripción general:</th>
+                            <td id="descripcion-general"></td>
+                        </tr>
+                        <tr>
+                            <th>Observaciones:</th>
+                            <td id="observaciones"></td>
+                        </tr>
+                        <tr>
+                            <th>Encargado:</th>
+                            <td id="encargado">Juan Pérez</td>
+                        </tr>
+                        <tr>
+                            <th>Fecha:</th>
+                            <td id="fecha"></td>
+                        </tr>
+                        <tr>
+                            <th>Área:</th>
+                            <td id="area"></td>
+                        </tr>
+                        <tr>
+                            <th>Categoría:</th>
+                            <td id="categoria"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h5>Imagen</h5>
+                <img id="bien-imagen" src="" alt="Imagen del Bien">
+                <div class="qr-code">
+                    <h5>QR</h5>
+                    <img id="bien-qr" src="" alt="Código QR">
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+            <button class="btn btn-primary" onclick="window.location.href='observaciones.html'">Observaciones</button>
+        </div>
+    </div>
+
+    <!-- JS scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="/project-directory/static/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="/project-directory/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/project-directory/static/vendor/chart.js/chart.umd.js"></script>
+    <script src="/project-directory/static/vendor/echarts/echarts.min.js"></script>
+    <script src="/project-directory/static/vendor/quill/quill.js"></script>
+    <script src="/project-directory/static/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="/project-directory/static/vendor/tinymce/tinymce.min.js"></script>
+    <script src="/project-directory/static/vendor/php-email-form/validate.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/project-directory/static/js/main.js"></script>
+    <script>
+        function imprimirPagina() {
+            window.print();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const bienId = urlParams.get('id');
+        
+            if (!bienId) {
+                console.error('No ID provided in the URL');
+                return;
+            }
+        
+            fetch(`http://192.168.0.241:5000/inventario-fisico/${bienId}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Data received:', data); // Verifica que los datos se están recibiendo
+        
+                    // Asegúrate de que los campos existan en los datos
+                    document.getElementById('bien-nombre').innerText = data.nombre || 'N/A';
+                    document.getElementById('numero-inventario').innerText = data.numero_inventario || 'N/A';
+                    document.getElementById('numero-serie').innerText = data.numero_serie || 'N/A';
+                    document.getElementById('estado-bien').innerText = data.estado_bien || 'N/A';
+                    document.getElementById('descripcion-general').innerText = data.descripcion || 'N/A';
+                    document.getElementById('observaciones').innerText = data.observaciones || 'N/A';
+                    document.getElementById('fecha').innerText = data.fecha_inicio || data.fecha_fin || 'N/A';
+                    document.getElementById('area').innerText = data.area || 'N/A';
+                    document.getElementById('categoria').innerText = data.categoria || 'N/A';
+        
+                    if (data.imagen) {
+                        document.getElementById('bien-imagen').src = `data:image/png;base64,${data.imagen}`;
+                    } else {
+                        document.getElementById('bien-imagen').alt = 'No image available';
+                    }
+        
+                    if (data.codigo_qr) {
+                        document.getElementById('bien-qr').src = `data:image/png;base64,${data.codigo_qr}`;
+                    } else {
+                        document.getElementById('bien-qr').alt = 'No QR code available';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+        
+    </script>
+
+</body>
+</html>

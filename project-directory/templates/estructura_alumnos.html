@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructura Orgánica</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+        .table-container {
+            margin-top: 20px;
+        }
+        .table thead th {
+            background-color: #f8f9fa;
+        }
+        .btn-custom {
+            margin-right: 10px;
+        }
+        .btn-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Recursos materiales/Estructura Orgánica</h3>
+        <h4>Lista de Estructura Orgánica</h4>
+
+        <!-- Search bar -->
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-container">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Niveles</th>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Área</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="estructura-organica-table-body">
+                    <!-- Aquí se generarán las filas de la tabla dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-container">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Buttons -->
+        <div class="btn-container">
+            <button class="btn btn-success" onclick="reporteEstructuraOrganica()">Reporte de estructura orgánica</button>
+            <button class="btn btn-primary" onclick="window.location.href='agregar_estructura_organica.html'">+ Agregar estructura orgánica</button>
+        </div>
+    </div>
+
+    <!-- JS scripts -->
+    <script>
+        // Function to fetch and display estructura organica
+        function fetchEstructuraOrganica() {
+            fetch('http://192.168.0.241:5000/estructura-organica')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('estructura-organica-table-body');
+                    tableBody.innerHTML = '';
+                    data.forEach(estructura => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td><input type="checkbox"></td>
+                            <td>${estructura.nivel}</td>
+                            <td>${estructura.nombre}</td>
+                            <td>${estructura.tipo}</td>
+                            <td>${estructura.area}</td>
+                            <td>
+                                <button class="btn btn-danger btn-custom" onclick="eliminarEstructura(${estructura.id})">Eliminar</button>
+                                <button class="btn btn-info btn-custom" onclick="window.location.href='editar_estructura.html?id=${estructura.id}'">Editar</button>
+                                <button class="btn btn-primary" onclick="window.location.href='detalles_estructura.html?id=${estructura.id}'">Detalles</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Function to generate the report of estructura organica
+        function reporteEstructuraOrganica() {
+            window.location.href = 'reporte_estructura_organica.html';
+        }
+
+        // Function to delete an estructura
+        function eliminarEstructura(id) {
+            fetch(`http://192.168.0.241:5000/estructura-organica/${id}`, {
+                method: 'DELETE',
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                fetchEstructuraOrganica();  // Refresh the list after deletion
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Fetch estructura organica when the page loads
+        document.addEventListener('DOMContentLoaded', fetchEstructuraOrganica);
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver QR - Sistema de Resguardos de Inventarios</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+        .qr-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20px;
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .qr-container img {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 18px;
+            text-align: center;
+            line-height: 28px;
+            cursor: pointer;
+        }
+        .btn-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .btn-download {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-report {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Resguardantes/Inventario</h3>
+
+        <!-- QR Code Container -->
+        <div class="qr-container">
+            <button class="close-btn">&times;</button>
+            <img src="static/img/qr_code.png" alt="Código QR">
+            <button class="btn-download" onclick="descargarQR()">Descargar QR</button>
+        </div>
+
+        <!-- Pagination and Action Buttons -->
+        <div class="d-flex justify-content-between mt-4">
+            <div>
+                <button class="btn btn-report">Reporte de inventario</button>
+            </div>
+            <div>
+                <button class="btn btn-primary" onclick="window.location.href='crear_nuevo_bien.html'">+ Crear nuevo bien</button>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Page navigation example" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- JS scripts -->
+    <script>
+        // Function to handle QR download
+        function descargarQR() {
+            const link = document.createElement('a');
+            link.href = 'static/img/qr_code.png';  // Ruta de la imagen QR
+            link.download = 'QR_Code.png';  // Nombre con el que se descargará la imagen
+            link.click();
+        }
+
+        // Function to handle close button (if needed to close the QR container)
+        document.querySelector('.close-btn').addEventListener('click', function() {
+            document.querySelector('.qr-container').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

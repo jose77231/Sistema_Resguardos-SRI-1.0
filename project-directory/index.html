@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido al Sistema de Gestión</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #3F9BBF;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        header img {
+            max-height: 80px;
+            margin-bottom: 10px;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .login-container {
+            background-color: #3399cc;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+        .login-container h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .login-container label {
+            color: white;
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #000;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .login-container .register-button {
+            background-color: #000;
+        }
+        .forgot-password-link {
+            color: white;
+            text-decoration: underline;
+            display: block;
+            margin-top: 10px;
+        }
+        footer {
+            background-color: #3F9BBF;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="static/img/logo1.png" alt="Logo">
+        <h1>Bienvenido al Sistema de Gestión</h1>
+    </header>
+    
+    <main>
+        <div class="login-container">
+            <h2>Iniciar Sesión</h2>
+            <form id="login-form">
+                <div>
+                    <label for="correo">Correo:</label>
+                    <input type="email" id="correo" name="correo" required>
+                </div>
+                <div>
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Iniciar Sesion</button>
+            </form>
+            <div id="error-message" class="error"></div>
+            <div>
+                <a href="recuperar_correo.html" class="forgot-password-link">Olvidé mi contraseña</a>
+            </div>
+            <div>
+                <button onclick="window.location.href='registro.html'" class="register-button">Registrar Nuevo Usuario</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sistema de Gestión. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="static/js/login.js"></script>
+</body>
+</html>

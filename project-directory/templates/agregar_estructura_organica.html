@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Estructura Orgánica</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .form-container .btn {
+            width: 100px;
+            margin: 10px;
+        }
+
+        .btn-cancel {
+            background-color: #ff5c5c;
+            color: white;
+            border: none;
+        }
+
+        .btn-save {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Nueva Estructura Orgánica</h2>
+        <form id="estructura-organica-form">
+            <div class="form-group">
+                <label for="nivel">Nivel</label>
+                <input type="text" class="form-control" id="nivel" name="nivel" required>
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="tipo">Tipo</label>
+                <input type="text" class="form-control" id="cargo" name="tipo" required>
+            </div>
+            <div class="form-group">
+                <label for="area">Área</label>
+                <input type="text" class="form-control" id="area" name="area" required>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-cancel" onclick="window.history.back()">Cancelar</button>
+                <button type="submit" class="btn btn-save">Guardar</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('estructura-organica-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const data = {
+                nivel: document.getElementById('nivel').value.trim(),
+                nombre: document.getElementById('nombre').value.trim(),
+                cargo: document.getElementById('cargo').value.trim(),
+                area: document.getElementById('area').value.trim()
+            };
+
+            fetch('http://192.168.0.241:5000/estructura_organica', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Estructura Orgánica guardada con éxito.');
+                window.location.href = 'estructura_organica.html';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un error al guardar la estructura orgánica: ' + error.message);
+            });
+        });
+    </script>
+</body>
+
+</html>

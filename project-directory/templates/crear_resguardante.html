@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Usuario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <h2 id="form-title">Crear Usuario</h2>
+
+    <form id="crearUsuarioForm" enctype="multipart/form-data" method="POST">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="apellido">Apellido</label>
+            <input type="text" class="form-control" id="apellido" name="apellido" required>
+        </div>
+        <div class="form-group">
+            <label for="genero">Género</label>
+            <select class="form-control" id="genero" name="genero" required>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otro">Otro</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo</label>
+            <input type="email" class="form-control" id="correo" name="correo" required>
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="text" class="form-control" id="telefono" name="telefono" required>
+        </div>
+        <div class="form-group">
+            <label for="bienes_asignados">Bienes Asignados</label>
+            <input type="number" class="form-control" id="bienes_asignados" name="bienes_asignados" required>
+        </div>
+        <div class="form-group">
+            <label for="imagen">Imagen</label>
+            <input type="file" class="form-control-file" id="imagen" name="imagen" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('crearUsuarioForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+
+        fetch('/usuarios', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert('Error al guardar el usuario: ' + data.error);
+            } else {
+                alert('Usuario guardado correctamente');
+                window.location.href = 'usuarios.html';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Hubo un problema con la solicitud: ' + error.message);
+        });
+    });
+</script>
+
+</body>
+</html>

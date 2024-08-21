@@ -1,0 +1,308 @@
+<!-- recursos_materiales.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos Materiales/sistemas</title>
+
+
+    <link href="/project-directory/static/css/styles.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link href="/project-directory/static/img/Logo1.jpeg" rel="icon">
+    <link href="/project-directory/static/img/Logo1.jpeg" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/project-directory/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\boxicons\css\boxicons.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\quill\quill.snow.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\quill\quill.bubble.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\remixicon\remixicon.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\simple-datatables\style.css" rel="stylesheet">
+    <style>
+        .table-container {
+            margin-top: 20px;
+        }
+
+        .table thead th {
+            background-color: #f8f9fa;
+        }
+
+        .btn-custom {
+            margin-right: 10px;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="" class="logo d-flex align-items-center">
+                <img src="/project-directory/static/img/Logo1.jpeg" alt="">
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Buscar" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div><!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li><!-- End Search Icon-->
+
+                <!--<li class="nav-item dropdown">
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge bg-primary badge-number">
+                        
+                        </span>
+                    </a>
+         
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                <li class="dropdown-header">
+                    <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Ver</span></a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li class="dropdown-footer">
+                    <a href="#">Todas las notificaciones</a>
+                </li>
+            </ul>
+
+
+                </li>-->
+
+                <li class="nav-item dropdown pe-3">
+                    <a class="dropdown-item d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+                        <span class="text-xl"><i class="bi bi-person-circle"></i></span>
+                    </a><!-- End Profile Image Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <span>Alumnos</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Salir</span>
+                            </a>
+                        </li>
+                    </ul><!-- End Profile Dropdown Items -->
+                </li><!-- End Profile Nav -->
+
+
+            </ul>
+        </nav><!-- End Icons Navigation -->
+
+    </header><!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-heading">Sistema de Resguardos de Inventarios (SRI)</li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="inicio.html">
+                    <i class="bi bi-grid"></i>
+                    <span>Inicio</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="recursos_materiales.html">
+                    <i class='bx bxs-box'></i>
+                    <span>Recursos materiales</span>
+                </a>
+            </li>
+
+
+            <!-- Resguardantes -->
+
+
+            <!-- Mantenimiento -->
+
+        </ul>
+
+    </aside><!-- End Sidebar -->
+
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Inicio</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="">Inicio</a></li>
+                    <li class="breadcrumb-item active">Recursos materiales</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section dashboard">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="h2">Recursos materiales</h1>
+
+                    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+                        <div class="table-container">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Nº de inventario</th>
+                                        <th>Nº de serie</th>
+                                        <th>Estado del bien</th>
+                                        <th>Descripción general</th>
+                                        <th>Área</th>
+                                        <th>Encargado del bien</th>
+                                        <th>Categoría</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bienes-tbody">
+                                    <!-- Aquí se insertarán los bienes -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="">
+                            <a href="crear_nuevo_bien.html" class="btn btn-primary">+ Crear nuevo bien</a>
+                        </div>
+
+                    </main>
+                </div>
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <strong><span>2024 Universidad Politécnica de Bacalar</span></strong>, All Rights Reserved
+        </div>
+        <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+            <!--Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>-->
+        </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JS scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Vendor JS Files -->
+    <script src="/project-directory/static/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="/project-directory/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/project-directory/static/vendor/chart.js/chart.umd.js"></script>
+    <script src="/project-directory/static/vendor/echarts/echarts.min.js"></script>
+    <script src="/project-directory/static/vendor/quill/quill.js"></script>
+    <script src="/project-directory/static/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="/project-directory/static/vendor/tinymce/tinymce.min.js"></script>
+    <script src="/project-directory/static/vendor/php-email-form/validate.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/project-directory/static/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('http://192.168.0.241:5000/bienes')
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.getElementById('bienes-tbody');
+                    data.forEach(bien => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                             <td><img src="data:image/png;base64,${bien.imagen}" alt="Imagen" width="50"></td></td><td>${bien.numero_inventario}</td><td>${bien.numero_serie}</td><td>${bien.estado}</td><td>${bien.descripcion}</td><td>${bien.area}</td><td>Juan Pérez</td><!-- Cambia esto para mostrar el encargado real --><td>${bien.categoria}</td><td><button onclick="confirmDelete(${bien.id})" class="btn btn-danger btn-custom">Eliminar</button><a href="editar_bien.html?id=${bien.id}" class="btn btn-primary btn-custom">Editar</a><a href="detalles_bien.html?id=${bien.id}" class="btn btn-secondary btn-custom">Detalles</a></td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        function confirmDelete(bienId) {
+            if (confirm("¿Estás seguro de que deseas eliminar este bien?")) {
+                fetch(`http://192.168.0.241:5000/bienes/${bienId}`, {
+                    method: 'DELETE',
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert('Bien eliminado correctamente');
+                            window.location.reload(); // Recargar la página después de eliminar
+                        } else {
+                            alert('Error al eliminar el bien');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        }
+    </script>
+</body>
+
+</html>
+</body>
+
+</html>

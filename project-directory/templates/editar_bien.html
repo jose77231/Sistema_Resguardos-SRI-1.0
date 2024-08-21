@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Bien</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Favicons -->
+    <link href="/project-directory/static/img/Logo1.jpeg" rel="icon">
+    <link href="/project-directory/static/img/Logo1.jpeg" rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/project-directory/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/boxicons/css/boxicons.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/simple-datatables/style.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            background-color: white;
+            margin-bottom: 20px;
+        }
+
+        .btn-custom {
+            width: 100px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .btn-atras {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+        .btn-guardar {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-imprimir {
+            background-color: #6f42c1;
+            color: white;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-container .card {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .form-container .card:last-child {
+            margin-right: 0;
+        }
+
+        .btn-update-image {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h3>Resguardantes/Inventario/Editar bien</h3>
+        <h4>Editar bien</h4>
+
+        <form id="editar-bien-form" enctype="multipart/form-data">
+            <div class="form-container">
+                <!-- Información general -->
+                <div class="card">
+                    <h5>Información general</h5>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inventario">Nº de Inventario</label>
+                        <input type="text" id="inventario" name="numero_inventario" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="serie">Nº de Serie</label>
+                        <input type="text" id="serie" name="numero_serie" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción general</label>
+                        <input type="text" id="descripcion" name="descripcion" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="observaciones">Observaciones</label>
+                        <input type="text" id="observaciones" name="observaciones" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha">Fecha</label>
+                        <input type="date" id="fecha" name="fecha" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria">Categoría</label>
+                        <select id="categoria" name="categoria" class="form-control" required>
+                            <option value="">Seleccione una categoría</option>
+                            <option value="Electrónica">Electrónica</option>
+                            <option value="Mobiliario">Mobiliario</option>
+                            <option value="Software">Software</option>
+                            <!-- Agrega más categorías según sea necesario -->
+                        </select>
+                    </div>
+                   
+                </div>
+
+                <!-- Configuración básica -->
+                <div class="card">
+                    <h5>Configuración básica</h5>
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-outline-success">
+                                <input type="radio" name="estado" id="activo" value="activo" autocomplete="off"> Activo
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                                <input type="radio" name="estado" id="inactivo" value="inactivo" autocomplete="off">
+                                Inactivo
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Imagen -->
+                    <div class="card mt-4">
+                        <h5>Imagen</h5>
+                        <img id="imagen-bien" src="" alt="Imagen del Bien" class="img-fluid">
+                        <br>
+                        <button type="button" class="btn-update-image">Actualizar</button>
+                        <br>
+                        <input type="file" id="imagen" name="imagen" class="form-control-file" accept="image/jpeg,image/png,image/gif,image/webp">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="d-flex justify-content-between mt-4">
+                <button type="button" class="btn btn-custom btn-atras" onclick="window.history.back()">Atrás</button>
+                <button type="submit" class="btn btn-custom btn-guardar">Guardar</button>
+                <button type="button" class="btn btn-custom btn-imprimir" onclick="imprimirPagina()">Imprimir</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- JS scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="/project-directory/static/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="/project-directory/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/project-directory/static/vendor/chart.js/chart.umd.js"></script>
+    <script src="/project-directory/static/vendor/echarts/echarts.min.js"></script>
+    <script src="/project-directory/static/vendor/quill/quill.js"></script>
+    <script src="/project-directory/static/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="/project-directory/static/vendor/tinymce/tinymce.min.js"></script>
+    <script src="/project-directory/static/vendor/php-email-form/validate.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/project-directory/static/js/main.js"></script>
+    <script>
+        // Función para imprimir la página
+        function imprimirPagina() {
+            window.print();
+        }
+
+        // Obtener los parámetros de la URL (ID del bien)
+        const urlParams = new URLSearchParams(window.location.search);
+        const bienId = urlParams.get('id');
+
+        // Cargar lista de coordinadores y personal de sistemas
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch(`http://192.168.0.241:5000/bienes/${bienId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const bien = data.bien;
+                    const coordinadores = data.coordinadores;
+                    const sistemas = data.sistemas;
+        
+                    // Llenar los campos del bien
+                    document.getElementById('nombre').value = bien.nombre;
+                    document.getElementById('inventario').value = bien.numero_inventario;
+                    document.getElementById('serie').value = bien.numero_serie;
+                    document.getElementById('descripcion').value = bien.descripcion;
+                    document.getElementById('observaciones').value = bien.observaciones;
+                    document.getElementById('fecha').value = bien.fecha.split('T')[0];
+                    document.getElementById('categoria').value = bien.categoria;
+                    document.getElementById('imagen-bien').src = `data:image/jpeg;base64,${bien.imagen}`;
+                    if (bien.estado === 'activo') {
+                        document.getElementById('activo').checked = true;
+                    } else {
+                        document.getElementById('inactivo').checked = true;
+                    }
+        
+                 
+
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        // Enviar los datos actualizados al servidor
+        document.getElementById('editar-bien-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+        
+            const formData = new FormData(this);
+            const asignadoValue = formData.get('asignado_a');
+            const [tipoAsignado, idAsignado] = asignadoValue.split('-');
+        
+            formData.append('tipo_asignado', tipoAsignado);
+            formData.append('id_asignado', idAsignado);
+        
+            fetch(`http://192.168.0.241:5000/bienes/${bienId}`, {
+                method: 'PUT',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                window.location.href = 'recursos_materiales.html'; // Redirige después de guardar
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al actualizar el bien.');
+            });
+        });
+        
+    </script>
+</body>
+
+</html>

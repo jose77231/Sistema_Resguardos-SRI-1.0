@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Nuevo Usuario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            background-color: white;
+            margin-bottom: 20px;
+        }
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-section {
+            width: 48%;
+        }
+        .btn-custom {
+            width: 120px;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .btn-atras {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        .btn-guardar {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Gestión de usuarios/Agregar nuevo usuario</h3>
+        <h4>Crear nuevo usuario</h4>
+
+        <form id="agregar-usuario-form">
+            <div class="form-container">
+                <!-- Información General -->
+                <div class="card form-section">
+                    <h5>Información general</h5>
+                    <div class="form-group">
+                        <label for="usuario">Nombre</label>
+                        <input type="text" id="usuario" name="usuario" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="apellido" name="apellido" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" id="telefono" name="telefono" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" id="correo" name="correo" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contraseña">Contraseña</label>
+                        <input type="password" id="contraseña" name="contraseña" class="form-control" required>
+                    </div>
+                </div>
+
+                <!-- Información de Usuario -->
+                <div class="card form-section">
+                    <h5>Información de usuario</h5>
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-outline-success active">
+                                <input type="radio" name="estado" id="activo" value="Activo" autocomplete="off" checked> Activo
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                                <input type="radio" name="estado" id="inactivo" value="Inactivo" autocomplete="off"> Inactivo
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="d-flex justify-content-end mt-4">
+                <button type="button" class="btn btn-custom btn-atras" onclick="window.history.back()">Atrás</button>
+                <button type="submit" class="btn btn-custom btn-guardar">Guardar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- JS scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Aquí puedes agregar la lógica para enviar los datos a tu API
+        document.getElementById('agregar-usuario-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            // Convierte formData a un objeto JSON
+            const data = {
+                nombre: formData.get('usuario'),
+                apellido: formData.get('apellido'),
+                telefono: formData.get('telefono'),
+                correo: formData.get('correo'),
+                password: formData.get('contraseña'),
+                estado: formData.get('estado')
+            };
+        
+            fetch('http://192.168.0.241:5000/coordinadores', {  // Asegúrate de que esta URL sea correcta
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {  // Cambiado para verificar si hay un error en la respuesta
+                    alert('Error: ' + data.error);
+                } else {
+                    alert('Usuario guardado con éxito.');
+                    window.location.href = 'gestion_usuarios.html';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Ocurrió un error al guardar el usuario.');
+            });
+        });
+        
+        
+    </script>
+    
+</body>
+</html>

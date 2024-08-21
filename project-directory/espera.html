@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espera</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <header>
+        <img src="static/img/logo.png" alt="Logo">
+        <h1>Espera un momento...</h1>
+    </header>
+    
+    <main>
+        <div class="wait-container">
+            <h2>Esperando código de recuperación</h2>
+            <p>Por favor, revisa tu correo. Puedes volver a enviar el código en <span id="countdown">60</span> segundos.</p>
+            <button id="resend-code" disabled>Reenviar código de recuperación</button>
+            <button id="enter-code">Tengo un código</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sistema de Gestión. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="static/js/wait.js"></script>
+</body>
+</html>

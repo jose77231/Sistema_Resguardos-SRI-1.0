@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Resguardantes</title>
+    <link href="/project-directory/static/css/styles.css" rel="stylesheet">
+    <link href="/project-directory/static/img/Logo1.jpeg" rel="icon">
+    <link href="/project-directory/static/img/Logo1.jpeg" rel="apple-touch-icon">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+    <link href="/project-directory/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/boxicons/css/boxicons.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/simple-datatables/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        .table thead th {
+            background-color: #f8f9fa;
+        }
+
+        .btn-custom {
+            margin-right: 10px;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="#" class="logo d-flex align-items-center">
+                <img src="/project-directory/static/img/Logo1.jpeg" alt="Logo Universidad Politécnica de Bacalar">
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div>
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Buscar" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div>
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="nav-item dropdown pe-3">
+                    <a class="dropdown-item d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+                        <span class="text-xl"><i class="bi bi-person-circle"></i></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <span>admins</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Salir</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-heading">Sistema de Resguardos de Inventarios (SRI)</li>
+            <li class="nav-item">
+                <a class="nav-link" href="administrador.html">
+                    <i class="bi bi-grid"></i>
+                    <span>Inicio</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="recursos_materiales.html">
+                    <i class='bx bxs-box'></i>
+                    <span>Recursos materiales</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="resguardos.html">
+                    <i class='bx bxs-box'></i>
+                    <span>Resguardos</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="resguardantes_pantalla.html">
+                    <i class="bx bxs-user"></i>
+                    <span>Resguardantes</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="gestion_usuarios.html">
+                    <i class='bx bxs-contact'></i>
+                    <span>Gestión de usuarios</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="estructura_organica.html">
+                    <i class='bx bx-sitemap'></i>
+                    <span>Estructura orgánica</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="baja_bien.html">
+                    <i class='bx bxs-cog'></i>
+                    <span>Baja del bien</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="inventario_fisico.html">
+                    <i class='bx bxs-package'></i>
+                    <span>Inventario físico</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Content -->
+    <main id="main" class="main">
+        <div class="container">
+            <h3>Recursos materiales/Resguardantes</h3>
+            <h4>Lista de resguardantes</h4>
+
+            <!-- Search bar -->
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar"
+                    aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-container">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Género</th>
+                            <th>Correo de usuario</th>
+                            <th>Número de teléfono</th>
+                            <th>Bienes asignados</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usuarios-table-body">
+                        <!-- Aquí se generarán las filas de la tabla dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-container">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Buttons -->
+            <div class="btn-container">
+                <button class="btn btn-success" onclick="reporteUsuarios()">Reporte de usuarios</button>
+                <button class="btn btn-primary" onclick="window.location.href='crear_resguardante.html'">+ Crear usuario</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- JS scripts -->
+    <script>
+        // Function to fetch and display users
+        function fetchUsuarios() {
+            fetch('http://192.168.0.241:5000/usuarios')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('usuarios-table-body');
+                    tableBody.innerHTML = '';
+                    data.forEach(usuario => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td><img src="data:image/png;base64,${usuario.imagen}" alt="Imagen" width="50" height="50"></td>
+                            <td>${usuario.nombre}</td>
+                            <td>${usuario.genero}</td>
+                            <td>${usuario.correo}</td>
+                            <td>${usuario.telefono}</td>
+                            <td>${usuario.bienes_asignados}</td>
+                            <td>
+                                <button class="btn btn-danger btn-custom" onclick="eliminarUsuario(${usuario.id})">Eliminar</button>
+                                <button class="btn btn-info btn-custom" onclick="window.location.href='editar_usuario.html?id=${usuario.id}'">Editar</button>
+                                <button class="btn btn-primary btn-custom" onclick="window.location.href='descripcion_usuario.html?id=${usuario.id}'">Detalles</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Function to generate the report of users
+        function reporteUsuarios() {
+            window.location.href = 'reporte_usuarios.html';
+        }
+
+        // Function to delete a user
+        function eliminarUsuario(id) {
+            if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
+                fetch(`http://192.168.0.241:5000/usuarios/${id}`, {
+                    method: 'DELETE',
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Usuario eliminado correctamente');
+                        fetchUsuarios();  // Refresh the list after deletion
+                    } else {
+                        alert('Error al eliminar el usuario');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+
+        // Fetch users when the page loads
+        document.addEventListener('DOMContentLoaded', fetchUsuarios);
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/project-directory/static/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="/project-directory/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/project-directory/static/vendor/chart.js/chart.umd.js"></script>
+    <script src="/project-directory/static/vendor/echarts/echarts.min.js"></script>
+    <script src="/project-directory/static/vendor/quill/quill.js"></script>
+    <script src="/project-directory/static/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="/project-directory/static/vendor/tinymce/tinymce.min.js"></script>
+    <script src="/project-directory/static/vendor/php-email-form/validate.js"></script>
+    <script src="/project-directory/static/js/main.js"></script>
+</body>
+
+</html>

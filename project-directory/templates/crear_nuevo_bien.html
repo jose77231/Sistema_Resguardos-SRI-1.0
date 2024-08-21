@@ -1,0 +1,173 @@
+<!-- crear_nuevo_bien.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nuevo Bien</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+    <link href="/project-directory/static/css/styles.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link href="/project-directory/static/img/Logo1.jpeg" rel="icon">
+    <link href="/project-directory/static/img/Logo1.jpeg" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/project-directory/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\boxicons\css\boxicons.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\quill\quill.snow.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\quill\quill.bubble.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\remixicon\remixicon.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\simple-datatables\style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="form-container">
+
+            <section class="section">
+                <!-- Vertical Form -->
+                <form class="row g-3" id="crear-bien-form" enctype="multipart/form-data">
+                    <h3>Recursos materiales/Inventario/Crear nuevo Bien</h3>
+                    <div class="col-12">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="inventario">Nº de Inventario</label>
+                        <input type="text" id="inventario" name="numero_inventario" class="form-control" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="serie">Nº de Serie</label>
+                        <input type="text" id="serie" name="numero_serie" class="form-control" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="descripcion">Descripción general</label>
+                        <input type="text" id="descripcion" name="descripcion" class="form-control" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="observaciones">Observaciones</label>
+                        <input type="text" id="observaciones" name="observaciones" class="form-control">
+                    </div>
+                    <div class="col-12">
+                        <label for="fecha">Fecha</label>
+                        <input type="date" id="fecha" name="fecha" class="form-control" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="area">Área</label>
+                        <input type="text" id="area" name="area" class="form-control" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="categoria">Categoría</label>
+                        <select id="categoria" name="categoria" class="form-control" required>
+                            <option value="Equipo tecnológico">Equipo tecnológico</option>
+                            <option value="Mobiliario">Mobiliario</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="card">
+                        <h5>Información de usuario</h5>
+                        <div class="form-group">
+                            <label for="estado">Estado</label>
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-outline-success active">
+                                    <input type="radio" name="estado" id="activo" value="Activo" autocomplete="off"
+                                        checked>
+                                    Activo
+                                </label>
+                                <label class="btn btn-outline-secondary">
+                                    <input type="radio" name="estado" id="inactivo" value="Inactivo" autocomplete="off">
+                                    Inactivo
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="card">
+                        <h4>Imagen</h4>
+                        <div class="file-upload">
+                            <p>Suelta archivos aquí</p>
+                            <p class="text-muted">Tipos de archivo soportados: jpeg, jpg, png, gif, webp</p>
+                            <input type="file" id="imagen" name="imagen" class="form-control-file"
+                                accept="image/jpeg,image/png,image/gif,image/webp">
+                        </div>
+                    </div>
+
+
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" onclick="window.history.back()">Atrás</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form><!-- Vertical Form -->
+            </section>
+        </div>
+    </div>
+
+
+    <!-- JS scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="/project-directory/static/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="/project-directory/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/project-directory/static/vendor/chart.js/chart.umd.js"></script>
+    <script src="/project-directory/static/vendor/echarts/echarts.min.js"></script>
+    <script src="/project-directory/static/vendor/quill/quill.js"></script>
+    <script src="/project-directory/static/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="/project-directory/static/vendor/tinymce/tinymce.min.js"></script>
+    <script src="/project-directory/static/vendor/php-email-form/validate.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/project-directory/static/js/main.js"></script>
+
+
+    <script>
+        document.getElementById('crear-bien-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+        
+            fetch('http://192.168.0.241:5000/bienes', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                window.location.href = 'recursos_materiales.html';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+        
+    </script>
+
+</body>
+
+
+
+</html>

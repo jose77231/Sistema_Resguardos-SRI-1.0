@@ -1,0 +1,5 @@
+una vez iniciado la carpeta sistema api con diseño la api y el html donde se consume están juntos el de la api se encuentra en sistema_gestion_api para acceder ala api sin abrir 2 visual pon el comando 
+ cd Sistema_Gestion_API
+luego una vez ahi corremos la api
+ python run.py 
+de ahi en los archivos de templates y js dentro de proyect directory cambiamos las ip y lo consumimos

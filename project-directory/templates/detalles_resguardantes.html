@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descripción de Resguardante</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="/project-directory/static/css/styles.css" rel="stylesheet">
+    <!-- Favicons -->
+    <link href="/project-directory/static/img/Logo1.jpeg" rel="icon">
+    <link href="/project-directory/static/img/Logo1.jpeg" rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/project-directory/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/project-directory/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\boxicons\css\boxicons.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\quill\quill.snow.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\quill\quill.bubble.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\remixicon\remixicon.css" rel="stylesheet">
+    <link href="/project-directory\static\vendor\simple-datatables\style.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            background-color: white;
+            margin-bottom: 20px;
+        }
+        .profile-info, .assigned-items {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile-info img {
+            max-width: 150px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+        .profile-details {
+            flex-grow: 1;
+        }
+        .assigned-items-table {
+            width: 100%;
+        }
+        .btn-custom {
+            width: 120px;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .btn-imprimir {
+            background-color: #6f42c1;
+            color: white;
+        }
+        .btn-editar {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Resguardantes/Descripción</h3>
+        <h4>Resguardante</h4>
+
+        <!-- Profile Information -->
+        <div class="card profile-info">
+            <img src="static/img/profile.png" alt="Profile Image" id="profile-image">
+            <div class="profile-details">
+                <h5 id="resguardante-nombre">Julio Manuel Cen Can</h5>
+                <p><strong>Departamento:</strong> <span id="resguardante-departamento">Coordinación de Ingenierías</span></p>
+                <p><strong>Correo Electrónico:</strong> <span id="resguardante-correo">julio.cen@upb.edu.mx</span></p>
+                <p><strong>Número de Teléfono:</strong> <span id="resguardante-telefono">9831048145154</span></p>
+                <p><strong>Bienes Totales:</strong> <span id="resguardante-bienes">10</span></p>
+                <p><strong>Sexo:</strong> <span id="resguardante-sexo">Masculino</span></p>
+                <p><strong>Fecha de Nacimiento:</strong> <span id="resguardante-fecha-nacimiento">10/07/2024</span></p>
+                <button class="btn btn-secondary mt-3" onclick="verInventario()">Inventario</button>
+            </div>
+        </div>
+
+        <!-- Assigned Items -->
+        <div class="card assigned-items">
+            <h5>Asignados</h5>
+            <table class="table table-bordered assigned-items-table" id="assigned-items-table">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Mobiliarios y Equipamiento</th>
+                        <th>Fecha de Entrada</th>
+                        <th>Bienes Asignados</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="assigned-items-tbody">
+                    <!-- Items will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-custom btn-imprimir" onclick="imprimirPerfil()">Imprimir</button>
+            <button class="btn btn-custom btn-editar" onclick="editarPerfil()">Editar perfil</button>
+        </div>
+    </div>
+
+    <!-- JS scripts -->
+    <script>
+        // Obtener ID del Resguardante desde la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const resguardanteId = urlParams.get('id');
+
+        // Function to fetch and display resguardante details
+        function fetchResguardanteDetails() {
+            fetch(`http://192.168.0.241:5000/resguardantes/${resguardanteId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('profile-image').src = data.imagen || 'static/img/profile.png';
+                    document.getElementById('resguardante-nombre').textContent = data.nombre + ' ' + data.apellido;
+                    document.getElementById('resguardante-departamento').textContent = data.departamento;
+                    document.getElementById('resguardante-correo').textContent = data.correo;
+                    document.getElementById('resguardante-telefono').textContent = data.telefono;
+                    document.getElementById('resguardante-bienes').textContent = data.bienes_asignados;
+                    document.getElementById('resguardante-sexo').textContent = data.genero;
+                    document.getElementById('resguardante-fecha-nacimiento').textContent = data.fecha_nacimiento;
+
+                    // Display assigned items
+                    const tbody = document.getElementById('assigned-items-tbody');
+                    tbody.innerHTML = '';
+                    data.asignaciones.forEach(asignacion => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td><img src="${asignacion.imagen}" alt="Mobiliario" width="50"></td>
+                            <td>${asignacion.descripcion}</td>
+                            <td>${new Date(asignacion.fecha_entrada).toLocaleString()}</td>
+                            <td>${asignacion.bienes_totales}</td>
+                            <td><button class="btn btn-info" onclick="verDetalles(${asignacion.id})">Detalles</button></td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Function to handle viewing inventory
+        function verInventario() {
+            window.location.href = `inventario_resguardante.html?id=${resguardanteId}`;
+        }
+
+        // Function to view details of an item
+        function verDetalles(itemId) {
+            window.location.href = `detalles_bien.html?id=${itemId}`;
+        }
+
+        // Function to print profile
+        function imprimirPerfil() {
+            window.print();
+        }
+
+        // Function to edit profile
+        function editarPerfil() {
+            window.location.href = `editar_resguardante.html?id=${resguardanteId}`;
+        }
+
+        // Fetch resguardante details when page loads
+        document.addEventListener('DOMContentLoaded', fetchResguardanteDetails);
+    </script>
+</body>
+</html>
